@@ -5,6 +5,7 @@ let userClickedPattern = [];
 let buttonColours = ["red", "blue", "green", "yellow"];
 let level = 0;
 let gameOver = false;
+let gameStart = false;
 
 function restartGame() {
   gamepattern = [];
@@ -12,6 +13,7 @@ function restartGame() {
   buttonColours = ["red", "blue", "green", "yellow"];
   level = 0;
   gameOver = false;
+  gameStart = true;
   nextSequence();
 }
 // Event listener
@@ -25,6 +27,9 @@ $("html").click(function (e) {
 $(".btn").click(function (e) {
   if (gameOver) {
     wrongAnswer();
+  } else if (!gameStart) {
+    gameStart = true;
+    restartGame();
   } else {
     userChosenColour = e.currentTarget.id;
     playSound(userChosenColour);
